@@ -1,22 +1,3 @@
-<div align="center">
-
-# Onopo
-
-*A Generic and Concurrent Object Pool for Scala3*
-
-</div>
-
-## Introduction
-
-Onopo provides two implementations: 
-- `BoundedBlockingPool`: Blocking object pool based on LinkedBlockingQueue 
-- `BoundedPool`: Non blocking object pool based on LinkedList
-
-## Usage
-
-...
-
-## License
 The MIT License (MIT)
 
 Copyright (c) 2023 Muqiu Han
