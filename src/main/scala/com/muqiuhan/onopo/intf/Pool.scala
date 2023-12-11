@@ -1,4 +1,4 @@
-package com.muqiuhan.onopo
+package com.muqiuhan.onopo.intf
 
 /** Represents a cached pool of objects. */
 trait Pool[T]:
@@ -17,27 +17,24 @@ trait Pool[T]:
    *  The validity of the objects are determined using the `Validator` interface, 
    *  such that an object `o` is valid if `Validator.isValid(o) == true`
    * 
-   *  @return T one of the pooled objects.
-   */
-  def get(): T
+   *  @return T one of the pooled objects. */
+  def get(): Option[T]
 
   /** Releases the object and puts it back to the pool.
    *  The mechanism of putting the object back to the pool is generally asynchronous, 
    *  however future implementations might differ.
    * 
-   *  @param obj the object to return to the pool
-   */
+   *  @param obj the object to return to the pool */
   def release(obj: T): Unit
 
   /** Shuts down the pool. In essence this call will not accept any more requests and will release all resources. 
-   *  Releasing resources are done via the `invalidate()` method of the `Validator interface.
-   */
+   *  Releasing resources are done via the `invalidate()` method of the `Validator` interface. */
   def shutdown(): Unit
 
   /** Represents the functionality to validate an object of the pooland to subsequently perform cleanup activities. 
     * This is a common way to validate an object so that the concrete `Pool` implementations 
     * will not have to bother about the type of objects being validated. */
-  trait Validator[T]:
+  trait Validator:
   
     /** Checks whether the object is valid. */
     def isValid(obj: T): Boolean
