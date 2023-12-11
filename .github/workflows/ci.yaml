@@ -1,4 +1,4 @@
-name: Cache-Lite.JVM
+name: Onopo
 
 on:
   pull_request:
@@ -41,9 +41,7 @@ jobs:
           cache: sbt
 
       - name: Build
-        working-directory: Cache-Lite.JVM
         run: sbt compile
 
       - name: Test
-        working-directory: Cache-Lite.JVM
         run: sbt test

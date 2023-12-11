@@ -4,6 +4,8 @@
 
 *A Generic and Concurrent Object Pool for Scala3*
 
+![ci](https://github.com/muqiuhan/onopo/actions/workflows/ci.yaml/badge.svg)
+
 </div>
 
 ## Introduction
