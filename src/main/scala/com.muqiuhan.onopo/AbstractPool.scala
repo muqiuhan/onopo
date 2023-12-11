@@ -3,8 +3,13 @@ package com.muqiuhan.onopo
 /** Represents an abstract pool, that defines the procedure of returning an object to the pool. */
 abstract class AbstractPool[T] extends Pool[T]:
 
+  /** How to check if an object is valid for reuse */
   protected def isValid(obj: T): Boolean
+
+  /** The actual logic to return a valid object to the pool */
   protected def returnToPool(obj: T): Unit
+
+  /** What to do if the object returned by a client is not valid */
   protected def handleInvalidReturn(obj: T): Unit
   
   /** Returns the object to the pool.

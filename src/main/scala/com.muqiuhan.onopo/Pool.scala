@@ -34,3 +34,16 @@ trait Pool[T]:
    */
   def shutdown(): Unit
 
+  /** Represents the functionality to validate an object of the pooland to subsequently perform cleanup activities. 
+    * This is a common way to validate an object so that the concrete `Pool` implementations 
+    * will not have to bother about the type of objects being validated. */
+  trait Validator[T]:
+  
+    /** Checks whether the object is valid. */
+    def isValid(obj: T): Boolean
+  
+    /** Performs any cleanup activities before discarding the object.
+      * For example before discarding database connection objects, 
+      * the pool will want to close the connections.
+      * This is done via the `invalidate()` method */
+    def invalidate(obj: T): Unit
