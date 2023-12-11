@@ -5,19 +5,20 @@ import intf.*
 import java.util
 import java.util.concurrent.Semaphore
 
-/** Non blocking object pool implementation.
-  * If an element is unavailable, return `None` */
+/** Non blocking object pool implementation. If an element is unavailable,
+  * return `None`
+  */
 class BoundedPool[T](
     size: Int,
     validator: Pool.Validator[T],
     objectFactory: ObjectFactory[T]
 ) extends AbstractPool[T]:
 
-  private val objs: util.LinkedList[T] = new util.LinkedList[T]()
+  private val objs: util.Queue[T] = new util.LinkedList[T]()
   private val permits: Semaphore = new Semaphore(1)
   @volatile private var shutdownCalled: Boolean = false
 
-  for i <- 0 to size do objs.push(objectFactory.createNew())
+  for i <- 0 to size do objs.add(objectFactory.createNew())
 
   override protected def handleInvalidReturn(obj: T): Unit = ()
 
