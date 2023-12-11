@@ -1,3 +1,5 @@
+package com.muqiuhan.onopo
+
 /** Represents a cached pool of objects. */
 trait Pool[T]:
   
@@ -31,3 +33,4 @@ trait Pool[T]:
    *  Releasing resources are done via the `invalidate()` method of the `Validator interface.
    */
   def shutdown(): Unit
+
